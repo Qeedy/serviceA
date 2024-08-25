@@ -1,18 +1,14 @@
 package com.microservice.serviceA.util;
 
 
-import com.microservice.serviceA.exceptions.TokenValidationException;
+import com.microservice.serviceA.exceptions.BsaeException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-import java.security.Key;
 import java.util.Date;
 
 @Component
@@ -38,11 +34,11 @@ public class JwtUtil {
                     .parseClaimsJws(token)
                     .getBody();
         } catch (ExpiredJwtException e) {
-            throw new TokenValidationException("Token has expired", e);
+            throw new BsaeException("Token has expired", e);
         } catch (SignatureException e) {
-            throw new TokenValidationException("Invalid JWT token", e);
+            throw new BsaeException("Invalid JWT token", e);
         } catch (Exception e) {
-            throw new TokenValidationException("Token validation failed", e);
+            throw new BsaeException("Token validation failed", e);
         }
     }
 

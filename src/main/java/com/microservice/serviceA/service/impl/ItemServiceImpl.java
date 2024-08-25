@@ -1,6 +1,8 @@
 package com.microservice.serviceA.service.impl;
 
 import com.microservice.serviceA.entity.Item;
+import com.microservice.serviceA.entity.ItemCategory;
+import com.microservice.serviceA.repository.ItemCategoryRepository;
 import com.microservice.serviceA.repository.ItemRepository;
 import com.microservice.serviceA.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,8 @@ import java.util.Optional;
 public class ItemServiceImpl implements ItemService {
     @Autowired
     private ItemRepository itemRepository;
+    @Autowired
+    private ItemCategoryRepository itemCategoryRepository;
 
     @Override
     public List<Item> getAllItems() {
@@ -24,6 +28,9 @@ public class ItemServiceImpl implements ItemService {
     }
     @Override
     public Item createOrUpdateItem(Item item) {
+        Optional<ItemCategory> itemCategory = itemCategoryRepository.findById(item.getCategory().getId());
+        if(itemCategory.isEmpty())
+            itemCategoryRepository.save(item.getCategory());
         return itemRepository.save(item);
     }
 }

@@ -1,6 +1,7 @@
 package com.microservice.serviceA.service.impl;
 
 import com.microservice.serviceA.entity.Customer;
+import com.microservice.serviceA.exceptions.BsaeException;
 import com.microservice.serviceA.repository.CustomerRepository;
 import com.microservice.serviceA.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer register(Customer customer) {
+        Customer data = customerRepository.findByUsername(customer.getUsername());
+        if(data != null)
+            throw new BsaeException("User exist");
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
         return customerRepository.save(customer);
     }
