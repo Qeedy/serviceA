@@ -1,10 +1,6 @@
 package com.microservice.serviceA.config;
 
-import com.microservice.serviceA.entity.Customer;
-import com.microservice.serviceA.service.CustomerService;
 import com.microservice.serviceA.util.JwtUtil;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
