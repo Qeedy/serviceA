@@ -1,7 +1,7 @@
 package com.microservice.serviceA.controller;
 
-import com.microservice.serviceA.entity.Customer;
-import com.microservice.serviceA.service.CustomerService;
+import com.microservice.serviceA.entity.User;
+import com.microservice.serviceA.service.UserService;
 import com.microservice.serviceA.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     @Autowired
-    private CustomerService customerService;
+    private UserService userService;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -26,17 +26,17 @@ public class AuthController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody Customer customer) {
-        customerService.register(customer);
+    public ResponseEntity<String> register(@RequestBody User user) {
+        userService.register(user);
         return ResponseEntity.ok("Customer registered successfully");
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Customer customer) {
-        Customer existingCustomer = customerService.findByUsername(customer.getUsername());
-        if (existingCustomer != null &&
-                passwordEncoder.matches(customer.getPassword(), existingCustomer.getPassword())) {
-            String token = jwtUtil.generateToken(existingCustomer.getUsername());
+    public ResponseEntity<String> login(@RequestBody User user) {
+        User existingUser = userService.findByUsername(user.getUsername());
+        if (existingUser != null &&
+                passwordEncoder.matches(user.getPassword(), existingUser.getPassword())) {
+            String token = jwtUtil.generateToken(existingUser.getUsername());
             return ResponseEntity.ok(token);
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");

@@ -35,9 +35,4 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer findByUsername(String username) {
         return customerRepository.findByUsername(username);
     }
-
-    @Override
-    public Customer findById(String id) {
-        return customerRepository.findById(id).get();
-    }
 }
