@@ -1,17 +1,18 @@
 package com.microservice.serviceA.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.UUID;
 
 @Entity
 @Data
 @Table(name = "tblUser")
 public class User {
     @Id
-    @Column
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID uuid;
+    @Column(unique = true)
     private String username;
     @Column
     private String fullName;

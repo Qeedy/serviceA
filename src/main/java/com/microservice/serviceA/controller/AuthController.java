@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -28,17 +25,21 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody User user) {
         userService.register(user);
-        return ResponseEntity.ok("Customer registered successfully");
+        return ResponseEntity.ok("User registered successfully");
     }
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody User user) {
-        User existingUser = userService.findByUsername(user.getUsername());
+        User existingUser = userService.findUserByCredential(user.getUsername());
         if (existingUser != null &&
                 passwordEncoder.matches(user.getPassword(), existingUser.getPassword())) {
-            String token = jwtUtil.generateToken(existingUser.getUsername());
+            String token = jwtUtil.generateToken(
+                    existingUser.getUsername(),
+                    user.getRole(),
+                    user.getUuid().toString());
             return ResponseEntity.ok(token);
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
     }
+
 }
