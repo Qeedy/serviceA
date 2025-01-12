@@ -1,6 +1,7 @@
 package com.microservice.serviceA.controller;
 
 import com.microservice.serviceA.entity.User;
+import com.microservice.serviceA.model.UserLoginModel;
 import com.microservice.serviceA.service.UserService;
 import com.microservice.serviceA.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +30,14 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User user) {
-        User existingUser = userService.findUserByCredential(user.getUsername());
+    public ResponseEntity<String> login(@RequestBody UserLoginModel user) {
+        User existingUser = userService.findByEmail(user.getEmail());
         if (existingUser != null &&
                 passwordEncoder.matches(user.getPassword(), existingUser.getPassword())) {
             String token = jwtUtil.generateToken(
                     existingUser.getUsername(),
-                    user.getRole(),
-                    user.getUuid().toString());
+                    existingUser.getRole(),
+                    existingUser.getUuid().toString());
             return ResponseEntity.ok(token);
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");

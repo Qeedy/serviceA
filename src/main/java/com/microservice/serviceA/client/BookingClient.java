@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.UUID;
 
-@FeignClient(name = "booking-service", url = "http://localhost:8081")
+@FeignClient(name = "booking-service", url = "http://localhost:8082")
 public interface BookingClient {
     @GetMapping("/booking/detail/{bookingNumber}")
     public BookingDetailModel getBookingDetail(@PathVariable String bookingNumber);

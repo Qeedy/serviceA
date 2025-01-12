@@ -2,7 +2,6 @@ package com.microservice.serviceA.service.impl;
 
 import com.microservice.serviceA.entity.User;
 import com.microservice.serviceA.exceptions.BsaeException;
-import com.microservice.serviceA.model.UserDetailModel;
 import com.microservice.serviceA.model.UserProfileModel;
 import com.microservice.serviceA.repository.UserRepository;
 import com.microservice.serviceA.service.UserService;
@@ -43,7 +42,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserProfileModel findByUsername(String username) {
-        User user = userRepository.findByUsernameOrEmail(username);
+        User user = userRepository.findByUsername(username);
         return constructUserProfile(user);
     }
 
@@ -58,7 +57,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByCredential(String searchTerm) {
-        return userRepository.findByUsernameOrEmail(searchTerm);
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }
