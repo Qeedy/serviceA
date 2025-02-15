@@ -1,16 +1,20 @@
-# Gunakan JDK 22 untuk build
-FROM eclipse-temurin:22-jdk AS build
+# Gunakan Maven dengan JDK 22 untuk build
+FROM maven:3.9.6-eclipse-temurin-22 AS build
 
 # Set working directory
 WORKDIR /app
 
-# Copy seluruh kode sumber
-COPY . .
+# Copy pom.xml dan install dependencies (agar cache bisa digunakan)
+COPY pom.xml .
+RUN mvn dependency:go-offline
 
-# Build aplikasi menggunakan Maven
+# Copy seluruh kode sumber
+COPY src/ src/
+
+# Build aplikasi
 RUN mvn clean package -DskipTests
 
-# Gunakan JDK 22 untuk runtime
+# Gunakan JDK 22 untuk runtime (lebih ringan)
 FROM eclipse-temurin:22-jre
 
 # Set working directory untuk runtime
