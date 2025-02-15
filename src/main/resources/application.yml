@@ -9,7 +9,9 @@ spring:
 #    password: admin
 #    driver-class-name: org.postgresql.Driver
   datasource:
-    url: ${DB_URL}
+    url: ${DATABASE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
