@@ -3,11 +3,20 @@ server:
 spring:
   application:
     name: serviceA
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/postgres
+#    username: postgres
+#    password: admin
+#    driver-class-name: org.postgresql.Driver
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
-    password: admin
+    password: AiGg4lSecXTv0Gg
     driver-class-name: org.postgresql.Driver
+    flowable:
+      url: jdbc:postgresql://localhost:5432/postgres?currentSchema=flowable
+      username: postgres
+      password: AiGg4lSecXTv0Gg
   jpa:
     hibernate:
       ddl-auto: update
