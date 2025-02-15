@@ -1,11 +1,23 @@
-# Gunakan image JDK 17 untuk menjalankan aplikasi
-FROM eclipse-temurin:17-jdk
+# Gunakan JDK untuk build
+FROM eclipse-temurin:17-jdk AS build
 
-# Set working directory dalam container
+# Set working directory
 WORKDIR /app
 
-# Copy file JAR dari hasil build Maven ke dalam container
-COPY target/*.jar app.jar
+# Copy seluruh kode sumber
+COPY . .
 
-# Jalankan aplikasi Spring Boot
-CMD
+# Build aplikasi menggunakan Maven
+RUN mvn clean package -DskipTests
+
+# Gunakan JDK untuk runtime
+FROM eclipse-temurin:17-jre
+
+# Set working directory untuk runtime
+WORKDIR /app
+
+# Copy file JAR dari hasil build sebelumnya
+COPY --from=build /app/target/*.jar app.jar
+
+# Jalankan aplikasi
+CMD ["java", "-Dserver.port=8080", "-jar", "app.jar"]
