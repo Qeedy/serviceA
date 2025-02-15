@@ -1,16 +1,20 @@
-# Gunakan JDK untuk build
-FROM eclipse-temurin:17-jdk AS build
+# Gunakan image Maven dengan JDK untuk build
+FROM maven:3.8.6-eclipse-temurin-17 AS build
 
 # Set working directory
 WORKDIR /app
 
-# Copy seluruh kode sumber
-COPY . .
+# Copy pom.xml dan unduh dependencies (agar cache bisa digunakan)
+COPY pom.xml .
+RUN mvn dependency:go-offline
 
-# Build aplikasi menggunakan Maven
+# Copy seluruh kode sumber
+COPY src/ src/
+
+# Build aplikasi
 RUN mvn clean package -DskipTests
 
-# Gunakan JDK untuk runtime
+# Gunakan JRE untuk runtime (lebih ringan)
 FROM eclipse-temurin:17-jre
 
 # Set working directory untuk runtime
