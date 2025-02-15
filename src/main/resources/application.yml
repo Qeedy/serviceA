@@ -8,14 +8,21 @@ spring:
 #    username: postgres
 #    password: admin
 #    driver-class-name: org.postgresql.Driver
-  ddatasource:
+  datasource:
     url: ${DATABASE_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
-    driver-class-name: org.hibernate.dialect.PostgreSQLDialect
-  jpa:
-    hibernate:
-      ddl-auto: update
+    driver-class-name: org.postgresql.Driver
+    jpa:
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+    sql:
+      init:
+        mode: always
 feign:
   client:
     config:
