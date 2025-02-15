@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -32,8 +34,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserProfileModel> getAllTechnician() {
+        return userRepository.findAllTechnician()
+                .stream().map(this::constructUserProfile)
+                .toList();
+    }
+
+    @Override
     public User register(User user) {
-        User data = userRepository.findByUsername(user.getUsername());
+        User data = userRepository.findByEmail(user.getEmail());
         if(data != null)
             throw new BsaeException("User exist");
         user.setPassword(passwordEncoder.encode(user.getPassword()));

@@ -26,4 +26,6 @@ public class User {
     private String role;
     @Column
     private String password;
+    @Column
+    private String gender;
 }

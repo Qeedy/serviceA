@@ -3,7 +3,7 @@ package com.microservice.serviceA.controller;
 
 import com.microservice.serviceA.client.TaskClient;
 import com.microservice.serviceA.model.BookingDetailModel;
-import com.microservice.serviceA.model.BookingListModel;
+import com.microservice.serviceA.model.BookingTaskModel;
 import com.microservice.serviceA.model.CreateBookingModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,27 +27,34 @@ public class TaskController {
                 .getBookingDetail(bookingNumber));
     }
 
-    @GetMapping("/task/{userId}")
-    public ResponseEntity<Page<BookingListModel>> getBookingList(
+    @GetMapping("/get-task-list")
+    public ResponseEntity<Page<BookingTaskModel>> getBookingList(
             @RequestHeader("userId") String userId,
+            @RequestParam(name = "keyword", required = false) String keyword,
             @RequestHeader("role") String role,
             Pageable pageable){
         return ResponseEntity.ok(taskClient
-                .getBookingList(UUID.fromString(userId),
-                        "ADMIN".equals(role), pageable));
+                .getBookingList(keyword, UUID.fromString(userId),
+                            "ADMIN".equals(role), pageable));
     }
 
-    @PostMapping("/task/create")
+    @PostMapping("/create")
     public ResponseEntity<String> createTask(
             @RequestBody CreateBookingModel model) {
-        return ResponseEntity.ok(taskClient.createTask(model));
+        String bookingNumber = taskClient.createTask(model);
+        return ResponseEntity.ok(bookingNumber);
     }
 
-    @PostMapping("/task/process-task/{bookingNumber}")
+    @PostMapping("/process-task/{bookingNumber}")
     public ResponseEntity<Void> processTask(
             @PathVariable String bookingNumber,
             @RequestBody Map<String, Object> variables) {
         taskClient.processTask(bookingNumber, variables);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/get-total-task")
+    public ResponseEntity<Integer> getTotalTask() {
+        return ResponseEntity.ok(taskClient.getTotalTask());
     }
 }

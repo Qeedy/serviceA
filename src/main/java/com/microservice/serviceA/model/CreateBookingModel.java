@@ -18,7 +18,7 @@ public class CreateBookingModel {
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private ServiceType serviceType;
     private String address;
-    @JsonFormat(pattern = "MM-dd")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate bookingDate;
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private ServiceTime serviceTime;

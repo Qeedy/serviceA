@@ -14,18 +14,21 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class BookingListModel {
+public class BookingTaskModel {
     private String bookingId;
-    @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private BookingStatus bookingStatus;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate bookingDate;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private ServiceTime serviceTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private BookingStatus bookingStatus;
     private String customerName;
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private ServiceType serviceType;
-    @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private ServiceTime serviceTime;
     private String technicianName;
+    private String taskName;
+    private String taskId;
 }
+

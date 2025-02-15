@@ -11,11 +11,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-  kafka:
-    bootstrap-servers: localhost:9092
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
 feign:
   client:
     config:
@@ -23,3 +18,7 @@ feign:
         connectTimeout: 5000
         readTimeout: 5000u
         loggerLevel: full
+
+logging:
+  level:
+    org.springframework.security: DEBUG

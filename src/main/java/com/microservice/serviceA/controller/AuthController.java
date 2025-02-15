@@ -2,6 +2,7 @@ package com.microservice.serviceA.controller;
 
 import com.microservice.serviceA.entity.User;
 import com.microservice.serviceA.model.UserLoginModel;
+import com.microservice.serviceA.model.UserProfileModel;
 import com.microservice.serviceA.service.UserService;
 import com.microservice.serviceA.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/auth")
@@ -30,17 +32,25 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserLoginModel user) {
+    public ResponseEntity<UserProfileModel> login(@RequestBody UserLoginModel user) {
         User existingUser = userService.findByEmail(user.getEmail());
         if (existingUser != null &&
                 passwordEncoder.matches(user.getPassword(), existingUser.getPassword())) {
             String token = jwtUtil.generateToken(
-                    existingUser.getUsername(),
+                    existingUser.getEmail(),
                     existingUser.getRole(),
                     existingUser.getUuid().toString());
-            return ResponseEntity.ok(token);
+            return ResponseEntity.ok(UserProfileModel.builder()
+                    .uuid(existingUser.getUuid())
+                    .email(existingUser.getEmail())
+                    .fullName(existingUser.getFullName())
+                    .phoneNumber(existingUser.getPhoneNumber())
+                    .address(existingUser.getAddress())
+                    .gender(existingUser.getGender())
+                    .token(token)
+                    .role(existingUser.getRole()).build());
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid credentials");
     }
 
 }

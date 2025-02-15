@@ -31,30 +31,28 @@ public class CustomerRequestFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
         String username = null;
-        String role = null; // Add role variable
-        String userId = null; // Add userId variable
-    
+        String userId = null;
+        String role = null;
+        HttpServletRequest wrappedRequest = request;
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
             Map<String, Object> claims = jwtUtil.validateToken(token);
             username = jwtUtil.validateToken(token).getSubject();
-            role = (String) claims.get("role"); // Extract role from claims
-            userId = (String) claims.get("userId"); // Extract userId from claims
+            role = (String) claims.get("role");
+            userId = (String) claims.get("userId");
         }
     
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             List<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority(role)); // Create authority with extracted role
+            authorities.add(new SimpleGrantedAuthority(role));
             UsernamePasswordAuthenticationToken authToken =
                     new UsernamePasswordAuthenticationToken(username, null, authorities);
             authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authToken);
-            // Add custom headers to the response
-            response.setHeader("userId", userId);
-            response.setHeader("role", role);
-            response.setHeader("username", username);
+
+            wrappedRequest = new CustomHttpServletRequest(request, userId, role, username);
         }
-    
-        filterChain.doFilter(request, response);
+
+        filterChain.doFilter(wrappedRequest, response);
     }
 }
