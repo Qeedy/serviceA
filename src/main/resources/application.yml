@@ -4,7 +4,7 @@ spring:
   application:
     name: serviceA
   datasource:
-    url: jdbc:postgresql://dpg-cuojhk1opnds738t2uh0-a.render.com:5432/servicea
+    url: jdbc:postgresql://dpg-cuojhk1opnds738t2uh0-a:5432/servicea
     username: servicea
     password: yFryoakYuREGH6RcaL9bXMNgj8KbwfGx
     driver-class-name: org.postgresql.Driver
