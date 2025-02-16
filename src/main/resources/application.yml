@@ -3,10 +3,10 @@ server:
 spring:
   application:
     name: serviceA
-    datasource:
-      url: jdbc:postgresql://34.101.139.132:5432/postgres
-      username: postgres
-      password: 50~apjlxgqp2X_~y
+  datasource:
+    url: jdbc:postgresql://34.101.139.132:5432/postgres
+    username: postgres
+    password: 50~apjlxgqp2X_~y
 #  datasource:
 #    url: jdbc:postgresql://localhost:5432/postgres
 #    username: postgres
