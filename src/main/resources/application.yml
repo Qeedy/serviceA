@@ -4,15 +4,13 @@ spring:
   application:
     name: serviceA
   datasource:
-    url: jdbc:postgresql://dpg-cuojhk1opnds738t2uh0-a:5432/servicea
-    username: servicea
-    password: yFryoakYuREGH6RcaL9bXMNgj8KbwfGx
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: admin
     driver-class-name: org.postgresql.Driver
-    jpa:
-      database-platform: org.hibernate.dialect.PostgreSQLDialect
-      hibernate:
-        ddl-auto: update  # Bisa diganti "validate" atau "none" di production
-      show-sql: true  # Menampilkan SQL query di log
+  jpa:
+    hibernate:
+      ddl-auto: update
   kafka:
     bootstrap-servers: localhost:9092
     producer:
