@@ -1,29 +1,23 @@
 server:
   port: 8081
-  address: 0.0.0.0
 spring:
   application:
     name: serviceA
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/postgres
-#    username: postgres
-#    password: admin
-#    driver-class-name: org.postgresql.Driver
   datasource:
-    url: jdbc:postgresql://taconditioner.internal:5432/servicea
+    url: jdbc:postgresql://dpg-cuojhk1opnds738t2uh0-a.render.com:5432/servicea
     username: servicea
-    password: MwTBY6goTdj2k0n
+    password: yFryoakYuREGH6RcaL9bXMNgj8KbwfGx
     driver-class-name: org.postgresql.Driver
     jpa:
       database-platform: org.hibernate.dialect.PostgreSQLDialect
       hibernate:
-        ddl-auto: update
-      properties:
-        hibernate:
-          dialect: org.hibernate.dialect.PostgreSQLDialect
-    sql:
-      init:
-        mode: always
+        ddl-auto: update  # Bisa diganti "validate" atau "none" di production
+      show-sql: true  # Menampilkan SQL query di log
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
 feign:
   client:
     config:
