@@ -9,7 +9,7 @@ spring:
 #    password: admin
 #    driver-class-name: org.postgresql.Driver
   datasource:
-    url: jdbc:postgresql://taconditioner.flycast:5432/servicea
+    url: jdbc:postgresql://taconditioner.internal:5432/servicea
     username: servicea
     password: MwTBY6goTdj2k0n
     driver-class-name: org.postgresql.Driver
