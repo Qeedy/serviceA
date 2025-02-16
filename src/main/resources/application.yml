@@ -3,10 +3,14 @@ server:
 spring:
   application:
     name: serviceA
-  datasource:
-    url: jdbc:postgresql://34.101.139.132:5432/postgres
-    username: postgres
-    password: 50~apjlxgqp2X_~y
+    datasource:
+      url: jdbc:postgresql://34.101.139.132:5432/postgres
+      username: postgres
+      password: 50~apjlxgqp2X_~y
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/postgres
+#    username: postgres
+#    password: admin
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -27,3 +31,5 @@ feign:
 logging:
   level:
     org.springframework.security: DEBUG
+booking-service:
+  url: https://serviceb-338365327766.asia-southeast2.run.app

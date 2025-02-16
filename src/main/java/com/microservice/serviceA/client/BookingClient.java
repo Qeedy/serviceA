@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 import java.util.Map;
 import java.util.UUID;
 
-@FeignClient(name = "booking-service", url = "http://localhost:8082")
+@FeignClient(name = "booking-service", url = "${booking-service.url}")
 public interface BookingClient {
     @GetMapping("/booking/detail/{bookingNumber}")
     public BookingDetailModel getBookingDetail(@PathVariable String bookingNumber);
