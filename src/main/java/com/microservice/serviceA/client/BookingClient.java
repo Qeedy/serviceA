@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -31,4 +33,17 @@ public interface BookingClient {
     public Integer getTotalBookings();
     @GetMapping("/booking/get-transaction-history")
     public Map<String, Object> getTransactionHistory();
+    @GetMapping("/booking/bookings-report-preview")
+    public Page<BookingListModel> getReportBookingsPreview(
+            @RequestParam(required = false) String status,
+            @RequestParam String dateRange,
+            @RequestParam(required = false) LocalDateTime dateFrom,
+            @RequestParam(required = false) LocalDateTime dateTo,
+            Pageable pageable);
+    @GetMapping("/booking/bookings-report")
+    public List<BookingListModel> getReportBookings(
+            @RequestParam(required = false) String status,
+            @RequestParam String dateRange,
+            @RequestParam(required = false) LocalDateTime dateFrom,
+            @RequestParam(required = false) LocalDateTime dateTo);
 }

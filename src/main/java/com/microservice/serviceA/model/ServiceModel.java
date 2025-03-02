@@ -1,12 +1,10 @@
 package com.microservice.serviceA.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.microservice.serviceA.enums.ServiceTime;
 import com.microservice.serviceA.enums.ServiceType;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -14,16 +12,10 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CreateBookingModel {
-    private UUID customerId;
+public class ServiceModel {
+    private UUID uuid;
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private ServiceType serviceType;
     private String serviceName;
     private BigDecimal cost;
-    private String address;
-    @JsonFormat(pattern = "dd-MM-yyyy")
-    private LocalDate bookingDate;
-    @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private ServiceTime serviceTime;
-    private String instruction;
 }

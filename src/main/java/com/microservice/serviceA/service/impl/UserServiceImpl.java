@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -28,8 +29,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<UserProfileModel> getAllUsers(Pageable pageable) {
-        return userRepository.findAll(pageable)
+    public UserProfileModel updateUser(UserProfileModel user) {
+        User data = userRepository.findByUuid(user.getUuid());
+        if(data == null)
+            throw new BsaeException("User doesn't exist");
+        data.setAddress(user.getAddress());
+        data.setEmail(user.getEmail());
+        data.setPhoneNumber(user.getPhoneNumber());
+        data.setGender(user.getGender());
+        data.setFullName(user.getFullName());
+        return constructUserProfile(userRepository.save(data));
+    }
+
+    @Override
+    public void deleteUser(UUID uuid) {
+        userRepository.deleteByUuid(uuid);
+    }
+
+
+    @Override
+    public Page<UserProfileModel> getAllUsers(String keyword, Pageable pageable) {
+        return userRepository.findAllByKeyword(keyword, pageable)
                 .map(this::constructUserProfile);
     }
 
@@ -62,6 +82,8 @@ public class UserServiceImpl implements UserService {
                 .address(user.getAddress())
                 .phoneNumber(user.getPhoneNumber())
                 .fullName(user.getFullName())
+                .role(user.getRole())
+                .gender(user.getGender())
                 .build();
     }
 

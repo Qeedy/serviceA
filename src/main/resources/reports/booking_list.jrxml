@@ -1,0 +1,197 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="booking_lists" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bef94e89-b105-4a51-9077-635f6bfa3b4d">
+	<parameter name="logoPath" class="java.lang.String"/>
+	<parameter name="period" class="java.lang.String"/>
+	<query language="sql"><![CDATA[]]></query>
+	<field name="bookingId" class="java.lang.String"/>
+	<field name="bookingDate" class="java.lang.String"/>
+	<field name="serviceTime" class="java.lang.String"/>
+	<field name="serviceType" class="java.lang.String"/>
+	<field name="status" class="java.lang.String"/>
+	<field name="customerName" class="java.lang.String"/>
+	<field name="technicianName" class="java.lang.String"/>
+	<field name="createdDate" class="java.lang.String"/>
+	<background splitType="Stretch"/>
+	<title splitType="Stretch"/>
+	<pageHeader height="75" splitType="Stretch">
+		<element kind="rectangle" uuid="75f7aebb-922e-41f8-9095-f9185daf5d91" x="-20" y="-20" width="595" height="90" backcolor="#F3F4F8"/>
+		<element kind="staticText" uuid="b6a39bc6-2ba4-4456-8ea0-7ae3172babac" x="70" y="12" width="241" height="40" fontSize="24.0" bold="true" hTextAlign="Left">
+			<text><![CDATA[Top Air Conditioner]]></text>
+			<box padding="0"/>
+		</element>
+		<element kind="image" uuid="ca463cfc-e517-484f-9124-adca6e440fb3" x="10" y="2" width="60" height="50" scaleImage="RetainShape" hImageAlign="Left">
+			<expression><![CDATA[$P{logoPath}]]></expression>
+		</element>
+	</pageHeader>
+	<columnHeader height="101" splitType="Stretch">
+		<element kind="staticText" uuid="b1dc5b50-b406-4e93-a2cd-1b63bba41791" x="7" y="0" width="333" height="30" fontSize="20.0" bold="true" hTextAlign="Left">
+			<text><![CDATA[Booking List]]></text>
+			<box padding="0"/>
+		</element>
+		<element kind="staticText" uuid="62a799ed-761a-4445-905d-085ab112f2d9" x="7" y="30" width="83" height="20" forecolor="#637387" fontSize="10.0" bold="true" hTextAlign="Left">
+			<text><![CDATA[Period Report : ]]></text>
+			<box padding="0"/>
+		</element>
+		<element kind="textField" uuid="49a7390e-e902-4ada-a173-6d7cf532c071" x="90" y="30" width="80" height="20" forecolor="#637387" fontName="SansSerif" fontSize="10.0" bold="true" hTextAlign="Left" vTextAlign="Top">
+			<expression><![CDATA[$P{period}]]></expression>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="rectangle" uuid="100ef2f1-f711-4345-9ab9-bea81fcf78ae" x="0" y="81" width="552" height="20" backcolor="#F3F4F8" radius="3"/>
+		<element kind="staticText" uuid="5a4ce040-945f-4315-a8c8-e4a24f2b2424" x="0" y="81" width="69" height="20" forecolor="#030303" fontName="SansSerif" fontSize="8.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Booking ID]]></text>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="77fa016f-82f4-418e-b697-f9f21e9f61ed" x="482" y="81" width="69" height="20" forecolor="#030303" fontName="SansSerif" fontSize="8.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Created Date]]></text>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="ce362ca4-5064-4875-9928-9e3fee9d7220" x="137" y="81" width="69" height="20" forecolor="#030303" fontName="SansSerif" fontSize="8.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Time]]></text>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="232a5e11-5689-48a0-b993-ccfdcd7a8799" x="275" y="81" width="69" height="20" forecolor="#030303" fontName="SansSerif" fontSize="8.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Customer]]></text>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="e80ba157-0cf9-46a4-a5f9-9eb8fef6b028" x="68" y="81" width="69" height="20" forecolor="#030303" fontName="SansSerif" fontSize="8.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Booking Date]]></text>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="2b4476b9-8fe7-4559-9256-a14888760864" x="206" y="81" width="69" height="20" forecolor="#030303" fontName="SansSerif" fontSize="8.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Status]]></text>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="8fb79e4b-7ec6-4749-af4a-ab01b047ed7e" x="344" y="81" width="69" height="20" forecolor="#030303" fontName="SansSerif" fontSize="8.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Service]]></text>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="35a031d0-6a7a-4f85-aae7-07071cda8f07" x="413" y="81" width="69" height="20" forecolor="#030303" fontName="SansSerif" fontSize="8.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Technician]]></text>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<element kind="textField" uuid="9b730094-578b-48ce-85fe-ebe7a73c6917" x="0" y="1" width="69" height="20" fontName="SansSerif" fontSize="8.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{bookingId}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="155de5fd-86df-4ac6-ad4d-f3bb8920094f" x="69" y="1" width="69" height="20" fontSize="8.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{bookingDate}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="fa2d44ec-ef71-4860-98dc-6c9a234ad2d8" x="138" y="1" width="69" height="20" fontSize="8.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{serviceTime}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="fc8b4b49-59fe-43a6-844f-e2639ead28e3" x="207" y="1" width="69" height="20" fontSize="8.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{status}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="d96840d3-ec84-4304-b771-aea4e177ff99" x="276" y="1" width="69" height="20" fontSize="8.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{customerName}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="f75b0f5c-e1fa-439a-b550-239ba8a798b8" x="345" y="1" width="69" height="20" fontSize="8.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{serviceType}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="07726e6c-643b-4f93-8e0e-bc5609b4b35e" x="414" y="1" width="69" height="20" fontSize="8.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{technicianName}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="d582c074-6db0-4c1b-ba1c-07e6ff667e50" x="483" y="1" width="69" height="20" fontSize="8.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{createdDate}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+			</element>
+		</band>
+	</detail>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>
