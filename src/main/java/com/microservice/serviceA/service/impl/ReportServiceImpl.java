@@ -45,9 +45,6 @@ public class ReportServiceImpl implements ReportService {
         parameters.put("totalCost", df.format(
                 Optional.ofNullable(data.getTotalCost())
                         .orElse(BigDecimal.ZERO)));
-        String jrxmlPath = "reports/booking_detail.jrxml";
-        String jasperPath = "reports/booking_detail.jasper";
-        compileJrxmlToJasper(jrxmlPath, jasperPath);
         InputStream reportStream = new ClassPathResource("reports/booking_detail.jasper").getInputStream();
         JasperReport jasperReport = (JasperReport) JRLoader.loadObject(reportStream);
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
@@ -56,19 +53,16 @@ public class ReportServiceImpl implements ReportService {
         return byteArrayOutputStream.toByteArray();
     }
 
-    private void compileJrxmlToJasper(String jrxmlPath, String jasperPath) throws Exception {
-        InputStream jrxmlStream = new ClassPathResource(jrxmlPath).getInputStream();
-        File tempJrxml = Files.createTempFile("temp_jasper_report", ".jrxml").toFile();
-        Files.copy(jrxmlStream, tempJrxml.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        JasperCompileManager.compileReportToFile(tempJrxml.getAbsolutePath(), "src/main/resources/" + jasperPath);
-        System.out.println("✔ Jasper file berhasil dikompilasi ulang dengan JasperReports 7.0.1!");
-    }
+//    private void compileJrxmlToJasper(String jrxmlPath, String jasperPath) throws Exception {
+//        InputStream jrxmlStream = new ClassPathResource(jrxmlPath).getInputStream();
+//        File tempJrxml = Files.createTempFile("temp_jasper_report", ".jrxml").toFile();
+//        Files.copy(jrxmlStream, tempJrxml.toPath(), StandardCopyOption.REPLACE_EXISTING);
+//        JasperCompileManager.compileReportToFile(tempJrxml.getAbsolutePath(), "src/main/resources/" + jasperPath);
+//        System.out.println("✔ Jasper file berhasil dikompilasi ulang dengan JasperReports 7.0.1!");
+//    }
 
     @Override
     public byte[] generateReportList(List<BookingListModel> data, String period) throws Exception {
-        String jrxmlPath = "reports/booking_list.jrxml";
-        String jasperPath = "reports/booking_list.jasper";
-        compileJrxmlToJasper(jrxmlPath, jasperPath);
         InputStream reportStream = new ClassPathResource("reports/booking_list.jasper").getInputStream();
         JasperReport jasperReport = (JasperReport) JRLoader.loadObject(reportStream);
         List<Map<String, Object>> bookingDataList = new ArrayList<>();
