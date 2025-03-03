@@ -4,6 +4,7 @@
 	<parameter name="bookingNumber" class="java.lang.String"/>
 	<parameter name="customerName" class="java.lang.String"/>
 	<parameter name="serviceType" class="java.lang.String"/>
+	<parameter name="serviceName" class="java.lang.String"/>
 	<parameter name="bookingDate" class="java.lang.String"/>
 	<parameter name="technicianName" class="java.lang.String"/>
 	<parameter name="status" class="java.lang.String"/>
@@ -140,7 +141,7 @@
 				</box>
 			</element>
 			<element kind="staticText" uuid="5cfd8078-b2fd-4636-ae31-706c8f8ecd59" x="7" y="37" width="273" height="20" forecolor="#637387" fontName="SansSerif" bold="true" vTextAlign="Middle">
-				<text><![CDATA[Service Type]]></text>
+				<text><![CDATA[Service]]></text>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -149,7 +150,7 @@
 				</box>
 			</element>
 			<element kind="textField" uuid="8d09ad06-d690-4a79-be0c-e41ef7834954" x="7" y="57" width="273" height="20" bold="true" vTextAlign="Middle">
-				<expression><![CDATA[$P{serviceType}]]></expression>
+				<expression><![CDATA[$P{serviceName} + ", " + $P{serviceType}]]></expression>
 				<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				<box>

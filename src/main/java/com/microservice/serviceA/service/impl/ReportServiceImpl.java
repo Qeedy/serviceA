@@ -32,6 +32,7 @@ public class ReportServiceImpl implements ReportService {
         parameters.put("bookingNumber", data.getBookingId());
         parameters.put("customerName", data.getCustomerName());
         parameters.put("serviceType", data.getServiceType().name());
+        parameters.put("serviceName", data.getServiceName());
         parameters.put("bookingDate", data.getBookingDateTime());
         parameters.put("technicianName", data.getTechnitionName());
         parameters.put("status", data.getBookingStatus().name());

@@ -16,6 +16,7 @@ public class BookingDetailModel {
     private UUID uuid;
     private String bookingId;
     private ServiceType serviceType;
+    private String serviceName;
     private String bookingDateTime;
     private BookingStatus bookingStatus;
     private String technitionName;
